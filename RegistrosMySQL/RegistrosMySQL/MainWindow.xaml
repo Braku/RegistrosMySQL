@@ -18,7 +18,11 @@
         </Style>
     </Window.Resources>
     <Grid>
-        <StackPanel HorizontalAlignment="Center">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="276*"/>
+            <ColumnDefinition Width="29*"/>
+        </Grid.ColumnDefinitions>
+        <StackPanel HorizontalAlignment="Center" Grid.ColumnSpan="2" Margin="10,0">
             <Label HorizontalAlignment="Center" Content="Registro MySQL"/>
             <WrapPanel Margin="0,3">
                 <TextBlock>Nombre:</TextBlock>
