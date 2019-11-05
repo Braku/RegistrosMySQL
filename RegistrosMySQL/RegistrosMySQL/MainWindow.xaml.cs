@@ -24,7 +24,6 @@ namespace MySQL
         public MainWindow()
         {
             InitializeComponent();
-            Mostrar();
         }
 
         private void Limpiar()
@@ -36,7 +35,7 @@ namespace MySQL
 
         private void BtnN_Click(object sender, RoutedEventArgs e)
         {
-            string connectionString = "datasource=127.0.0.1;username=root;password=contra;database=registros;";
+            string connectionString = "datasource=127.0.0.1;username=root;password=Brambila1402;database=reg_sechma;";
             if (Nom.Text != "")
             {
                 if (Correo.Text != "")
@@ -70,80 +69,25 @@ namespace MySQL
 
         }
 
-        private void Mostrar()
+        private void BRegs_Click(object sender, RoutedEventArgs e)
         {
-            string connectionString = "datasource=127.0.0.1;username=root;password=contra;database=registros;";
+            string connectionString = "datasource=127.0.0.1;username=root;password=Brambila1402;database=reg_sechma;";
+
             MySqlConnection connection = new MySqlConnection(connectionString);
             MySqlCommand cmd = new MySqlCommand("SELECT * FROM registros", connection);
             connection.Open();
             DataTable dt = new DataTable();
             dt.Load(cmd.ExecuteReader());
-            connection.Close();
-            dgrid.DataContext = dt;
-        }
-        private void BUpdate_Click(object sender, RoutedEventArgs e)
-        {
-            string connectionString = "datasource=127.0.0.1;username=root;password=contra;database=registros;";
-            string querty = "UPDATE registros SET Nombre = '" + Nom.Text + "' , Correo = '" + Correo.Text + "', Telefono = " + Telefono.Text + " WHERE id = " + id.Text + "";
-
-            MySqlConnection connection = new MySqlConnection(connectionString);
-            MySqlCommand cmd = new MySqlCommand(querty, connection);
-            connection.Open();
-            cmd.ExecuteNonQuery();
-            connection.Close();
-            Limpiar();
-            Mostrar();
-            SPEdit.Visibility = System.Windows.Visibility.Hidden;
-            BUpdate.Visibility = System.Windows.Visibility.Hidden;
-        }
-
-        private void BEdit_Click(object sender, RoutedEventArgs e)
-        {
-            if (dgrid.SelectedItems.Count > 0)
+            if (dt.Rows.Count > 0)
             {
-                DataRowView row = (DataRowView)dgrid.SelectedItems[0];
-                id.Text = row["id"].ToString();
-                Nom.Text = row["Nombre"].ToString();
-                Correo.Text = row["Correo"].ToString();
-                Telefono.Text = row["Telefono"].ToString();
-                id.IsEnabled = false;
-                SPEdit.Visibility = System.Windows.Visibility.Visible;
-                BUpdate.Visibility = System.Windows.Visibility.Visible;
+                Registros RG = new Registros();
+                RG.Show();
             }
             else
             {
-                MessageBox.Show("Seleccione un registro de la lista");
+                MessageBox.Show("No se encontraron registros");
             }
-        }
-
-        private void BCan_Click(object sender, RoutedEventArgs e)
-        {
-            Limpiar();
-        }
-
-        private void BDel_Click(object sender, RoutedEventArgs e)
-        {
-            string connectionString = "datasource=127.0.0.1;username=root;password=contra;database=registros;";
-            if (dgrid.SelectedItems.Count > 0)
-            {
-                MessageBoxResult result = MessageBox.Show("Seguro que quieres eliminar este registro?", "Confirmacion", MessageBoxButton.YesNo, MessageBoxImage.Question);
-                if (result == MessageBoxResult.Yes)
-                {
-                    DataRowView row = (DataRowView)dgrid.SelectedItems[0];
-                    string querty = "DELETE FROM registros WHERE id =" + row["id"].ToString();
-
-                    MySqlConnection connection = new MySqlConnection(connectionString);
-                    MySqlCommand cmd = new MySqlCommand(querty, connection);
-                    connection.Open();
-                    cmd.ExecuteNonQuery();
-                    connection.Close();
-                    Limpiar();
-                }
-            }
-            else
-            {
-                MessageBox.Show("Seleccione un registro de la lista");
-            }
+            connection.Close();
         }
     }
 }

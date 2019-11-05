@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
         ResizeMode="CanMinimize"
-        Title="Registros" Height="280" Width="400">
+        Title="Registros" Height="185" Width="311">
     <Window.Resources>
         <Style TargetType="Button">
             <Setter Property="BorderThickness" Value="0"/>
@@ -19,7 +19,7 @@
     </Window.Resources>
     <Grid>
         <StackPanel HorizontalAlignment="Center">
-            <Label HorizontalAlignment="Center" Content="Registro encuesta"/>
+            <Label HorizontalAlignment="Center" Content="Registro MySQL"/>
             <WrapPanel Margin="0,3">
                 <TextBlock>Nombre:</TextBlock>
                 <TextBox Name="Nom" Width="190" Background="#FFF1F1F1" Margin="21,0"/>
@@ -33,24 +33,9 @@
                 <TextBox Name="Telefono" Width="90" Background="#FFF1F1F1" Margin="19,0"/>
             </WrapPanel>
             <WrapPanel HorizontalAlignment="Right">
-                <Button Width="70" Content="Registrarse" Name="BtnN" Margin="0,10,30,10" Click="BtnN_Click"/>
-            </WrapPanel>
-        </StackPanel>
-        <DataGrid Margin="10,128,10,41" AutoGenerateColumns="True" Name="dgrid" ItemsSource="{Binding}"/>
-        <StackPanel Name="SPEdit" Margin="0,100" HorizontalAlignment="Center" Visibility="Hidden">
-            <WrapPanel Margin="-143,0">
-                <TextBlock>ID:</TextBlock>
-                <TextBox Name="id" Width="20" Background="#FFF1F1F1" Margin="53,0"/>
-            </WrapPanel>
-        </StackPanel>
-        <StackPanel HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,10,10">
-            <WrapPanel>
-                <Button Width="70" Name="BUpdate" Content="Actualizar" Margin="5,8" Click="BUpdate_Click" Visibility="Collapsed"/>
-                <Button Width="50" Name="BCan"  Content="Cancelar" Margin="5,8" Click="BCan_Click"/>
-                <Button Width="40" Name="BEdit" Content="Editar" Margin="5,8" Click="BEdit_Click"/>
-                <Button Width="50" Name="BDel" Content="Eliminar" Margin="5,8" Click="BDel_Click"/>
+                <Button Width="70" Content="Registrarse" Name="BtnN" Margin="0,10" Click="BtnN_Click"/>
+                <Button Width="70" Content="Registros" Margin="20,10,30,10" Click="BRegs_Click"/>
             </WrapPanel>
         </StackPanel>
     </Grid>
 </Window>
-
